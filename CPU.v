@@ -19,13 +19,11 @@ Control Control(
 );
 */
 
-/*
 Adder Add_PC(
     .data1_in   (),
     .data2_in   (),
     .data_o     ()
 );
-*/
 
 PC PC(
     .clk_i      (),
