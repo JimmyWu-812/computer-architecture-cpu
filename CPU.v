@@ -10,6 +10,9 @@ input               clk_i;
 input               rst_i;
 input               start_i;
 
+wire pc_o, const_4 = 3'b100, adder_o, ALUSrc;
+wire [31:0] instruction_memory_o, register_data_2, sign_extend_o, mux_o;
+
 /*
 Control Control(
     .Op_i       (),
@@ -20,22 +23,22 @@ Control Control(
 */
 
 Adder Add_PC(
-    .data1_in   (),
-    .data2_in   (),
-    .data_o     ()
+    .data1_in   (pc_o),
+    .data2_in   (const_4),
+    .data_o     (adder_o)
 );
 
 PC PC(
-    .clk_i      (),
-    .rst_i      (),
-    .start_i    (),
-    .pc_i       (),
-    .pc_o       ()
+    .clk_i      (clk_i),
+    .rst_i      (rst_i),
+    .start_i    (start_i),
+    .pc_i       (adder_o),
+    .pc_o       (pc_o)
 );
 
 Instruction_Memory Instruction_Memory(
-    .addr_i     (), 
-    .instr_o    ()
+    .addr_i     (pc_o), 
+    .instr_o    (instruction_memory_o)
 );
 
 Registers Registers(
@@ -49,14 +52,12 @@ Registers Registers(
     .RS2data_o   () 
 );
 
-/*
 MUX32 MUX_ALUSrc(
-    .data1_i    (),
-    .data2_i    (),
-    .select_i   (),
-    .data_o     ()
+    .data1_i    (register_data_2),
+    .data2_i    (sign_extend_o),
+    .select_i   (ALUSrc),
+    .data_o     (mux_o)
 );
-*/
 
 /*
 Sign_Extend Sign_Extend(
