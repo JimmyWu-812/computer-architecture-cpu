@@ -15,5 +15,4 @@ assign ALUOp_o = Op_i[6:5];
 assign ALUSrc_o = ~Op_i[5];
 assign RegWrite_o = 1'b1;
 
-
 endmodule
