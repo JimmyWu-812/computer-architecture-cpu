@@ -1,10 +1,10 @@
 module ALU
 (
-    data1_i    (),
-    data2_i    (),
-    ALUCtrl_i  (),
-    data_o     (),
-    Zero_o     ()
+    data1_i,
+    data2_i,
+    ALUCtrl_i,
+    data_o,
+    Zero_o
 );
 
 input [31:0] data1_i;
@@ -15,7 +15,7 @@ output Zero_o;
 
 case(ALUCtrl_i)
     3'b000: assign data_o = data1_i & data2_i;
-    3'b001: assign data_o = data1_i ^. data2_i;
+    3'b001: assign data_o = data1_i ^ data2_i;
     3'b010: assign data_o = data1_i << data2_i;
     3'b011: assign data_o = data1_i + data2_i;
     3'b100: assign data_o = data1_i - data2_i;

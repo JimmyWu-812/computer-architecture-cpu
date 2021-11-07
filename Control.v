@@ -1,9 +1,9 @@
 module Control
 (
-    Op_i       (),
-    ALUOp_o    (),
-    ALUSrc_o   (),
-    RegWrite_o ()
+    Op_i,
+    ALUOp_o,
+    ALUSrc_o,
+    RegWrite_o
 );
 
 input [6:0] Op_i;
