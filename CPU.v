@@ -11,7 +11,7 @@ input               rst_i;
 input               start_i;
 
 wire pc_o, const_4 = 3'b100, adder_o, ALUSrc, RegWrite;
-wire [31:0] instruction_memory_o, register_data_2, sign_extend_o, mux_o;
+wire [31:0] instruction_memory_o, register_data_2, sign_extend_o, mux_o, alu_o;
 wire [1:0] ALUOp;
 wire [2:0] alu_control_o;
 
@@ -43,13 +43,13 @@ Instruction_Memory Instruction_Memory(
 
 Registers Registers(
     .clk_i      (clk_i),
-    .RS1addr_i   (),
-    .RS2addr_i   (),
-    .RDaddr_i   (), 
-    .RDdata_i   (),
-    .RegWrite_i (), 
-    .RS1data_o   (), 
-    .RS2data_o   () 
+    .RS1addr_i   (instruction_memory_o[19:15]),
+    .RS2addr_i   (instruction_memory_o[24:20]),
+    .RDaddr_i   (instruction_memory_o[11:7]), 
+    .RDdata_i   (alu_o),
+    .RegWrite_i (RegWrite), 
+    .RS1data_o   (register_data_1), 
+    .RS2data_o   (register_data_2) 
 );
 
 MUX32 MUX_ALUSrc(
