@@ -21,7 +21,7 @@ case(ALUCtrl_i)
     3'b100: assign data_o = data1_i - data2_i;
     3'b101: assign data_o = data1_i * data2_i;
     3'b110: assign data_o = data1_i + data2_i;
-    3'b111: assign data_o = data1_i >> data2_i;
+    3'b111: assign data_o = data1_i >>> data2_i;
 endcase
 
 endmodule
