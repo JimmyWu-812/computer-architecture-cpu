@@ -10,17 +10,17 @@ input               clk_i;
 input               rst_i;
 input               start_i;
 
-wire pc_o, const_4 = 3'b100, adder_o, ALUSrc;
+wire pc_o, const_4 = 3'b100, adder_o, ALUSrc, RegWrite;
 wire [31:0] instruction_memory_o, register_data_2, sign_extend_o, mux_o;
+wire [1:0] ALUOp;
+wire [2:0] alu_control_o;
 
-/*
 Control Control(
-    .Op_i       (),
-    .ALUOp_o    (),
-    .ALUSrc_o   (),
-    .RegWrite_o ()
+    .Op_i       (instruction_memory_o[6:0]),
+    .ALUOp_o    (ALUOp),
+    .ALUSrc_o   (ALUSrc),
+    .RegWrite_o (RegWrite)
 );
-*/
 
 Adder Add_PC(
     .data1_in   (pc_o),
@@ -76,13 +76,11 @@ ALU ALU(
 );
 */
 
-/*
 ALU_Control ALU_Control(
-    .funct_i    (),
-    .ALUOp_i    (),
-    .ALUCtrl_o  ()
+    .funct_i    ({instruction_memory_o[31:25], instruction_memory_o[14:12]}),
+    .ALUOp_i    (ALUOp[6:5]),
+    .ALUCtrl_o  (alu_control_o)
 );
-*/
 
 endmodule
 
