@@ -42,7 +42,7 @@ Instruction_Memory Instruction_Memory(
 );
 
 Registers Registers(
-    .clk_i      (),
+    .clk_i      (clk_i),
     .RS1addr_i   (),
     .RS2addr_i   (),
     .RDaddr_i   (), 
@@ -59,12 +59,10 @@ MUX32 MUX_ALUSrc(
     .data_o     (mux_o)
 );
 
-/*
 Sign_Extend Sign_Extend(
     .data_i     (),
     .data_o     ()
 );
-*/
   
 /*
 ALU ALU(

@@ -6,7 +6,7 @@ module Control
     RegWrite_o ()
 );
 
-input [6:0] Op_i
+input [6:0] Op_i;
 output [1:0] ALUOp_o;
 output ALUSrc_o;
 output RegWrite_o;
