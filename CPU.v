@@ -10,7 +10,7 @@ input               clk_i;
 input               rst_i;
 input               start_i;
 
-wire pc_o, const_4 = 3'b100, adder_o, ALUSrc, RegWrite;
+wire pc_o, const_4 = 3'b100, adder_o, ALUSrc, RegWrite, Zero;
 wire [31:0] instruction_memory_o, register_data_2, sign_extend_o, mux_o, alu_o;
 wire [1:0] ALUOp;
 wire [2:0] alu_control_o;
@@ -60,19 +60,17 @@ MUX32 MUX_ALUSrc(
 );
 
 Sign_Extend Sign_Extend(
-    .data_i     (),
-    .data_o     ()
+    .data_i     (instruction_memory_o[31:20]),
+    .data_o     (sign_extend_o)
 );
   
-/*
 ALU ALU(
-    .data1_i    (),
-    .data2_i    (),
-    .ALUCtrl_i  (),
-    .data_o     (),
-    .Zero_o     ()
+    .data1_i    (register_data_1),
+    .data2_i    (mux_o),
+    .ALUCtrl_i  (alu_control_o),
+    .data_o     (alu_o),
+    .Zero_o     (Zero)
 );
-*/
 
 ALU_Control ALU_Control(
     .funct_i    ({instruction_memory_o[31:25], instruction_memory_o[14:12]}),
