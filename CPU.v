@@ -74,7 +74,7 @@ ALU ALU(
 
 ALU_Control ALU_Control(
     .funct_i    ({instruction_memory_o[31:25], instruction_memory_o[14:12]}),
-    .ALUOp_i    (ALUOp[6:5]),
+    .ALUOp_i    (ALUOp),
     .ALUCtrl_o  (alu_control_o)
 );
 

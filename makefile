@@ -9,13 +9,17 @@ CC = iverilog
 # DBGFLAGS = -g -D_DEBUG_ON_
 # OPTFLAGS = -O3
 
-all	: CPU.out
+all: CPU.out
 	@echo -n ""
 
-# optimized version
-CPU.out 	   	: Adder.v ALU_Control.v ALU.v Control.v CPU.v Instruction_Memory.v MUX32.v PC.v Registers.v Sign_Extend.v testbench.v
-			$(CC) -o $@ $^
+CPU.out: Adder.v ALU_Control.v ALU.v Control.v CPU.v Instruction_Memory.v MUX32.v PC.v Registers.v Sign_Extend.v testbench.v
+	$(CC) -o $@ $^
 
-# clean all the .o and executable files
+sim:
+	vvp CPU.out
+
+wav:
+	gtkwave CPU.vcd
+
 clean:
-		rm -rf *.out *.vcd output.txt
+	rm -rf *.out *.vcd output.txt
