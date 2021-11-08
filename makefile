@@ -12,7 +12,7 @@ CC = iverilog
 all: CPU.out
 	@echo -n ""
 
-CPU.out: Adder.v ALU_Control.v ALU.v Control.v CPU.v Instruction_Memory.v MUX32.v PC.v Registers.v Sign_Extend.v testbench.v
+CPU.out: *.v
 	$(CC) -o $@ $^
 
 sim:
