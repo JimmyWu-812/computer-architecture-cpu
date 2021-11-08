@@ -10,8 +10,9 @@ input               clk_i;
 input               rst_i;
 input               start_i;
 
-wire pc_o, const_4, adder_o, ALUSrc, RegWrite, Zero;
-wire [31:0] instruction_memory_o, register_data_1, register_data_2, sign_extend_o, mux_o, alu_o;
+wire const_4, ALUSrc, RegWrite, Zero;
+wire [31:0] instruction_memory_o, register_data_1, register_data_2, sign_extend_o, 
+    mux_o, alu_o, pc_o, adder_o;
 wire [1:0] ALUOp;
 wire [2:0] alu_control_o;
 

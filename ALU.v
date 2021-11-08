@@ -13,15 +13,19 @@ input [2:0] ALUCtrl_i;
 output [31:0] data_o;
 output Zero_o;
 
-case(ALUCtrl_i)
-    3'b000: assign data_o = data1_i & data2_i;
-    3'b001: assign data_o = data1_i ^ data2_i;
-    3'b010: assign data_o = data1_i << data2_i;
-    3'b011: assign data_o = data1_i + data2_i;
-    3'b100: assign data_o = data1_i - data2_i;
-    3'b101: assign data_o = data1_i * data2_i;
-    3'b110: assign data_o = data1_i + data2_i;
-    3'b111: assign data_o = data1_i >>> data2_i;
-endcase
+reg data_o;
+
+always @(*) begin
+    case(ALUCtrl_i)
+        3'b000: data_o = data1_i & data2_i;
+        3'b001: data_o = data1_i ^ data2_i;
+        3'b010: data_o = data1_i << data2_i;
+        3'b011: data_o = data1_i + data2_i;
+        3'b100: data_o = data1_i - data2_i;
+        3'b101: data_o = data1_i * data2_i;
+        3'b110: data_o = data1_i + data2_i;
+        3'b111: data_o = data1_i >>> data2_i;
+    endcase
+end
 
 endmodule
