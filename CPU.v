@@ -10,12 +10,10 @@ input               clk_i;
 input               rst_i;
 input               start_i;
 
-wire const_4, ALUSrc, RegWrite, Zero;
+wire ALUSrc, RegWrite, Zero;
 wire [31:0] instruction_memory_o, register_data_1, register_data_2, sign_extend_o, mux_o, alu_o, pc_o, adder_o;
 wire [1:0] ALUOp;
 wire [2:0] alu_control_o;
-
-assign const_4 = 3'b100;
 
 Control Control(
     .Op_i       (instruction_memory_o[6:0]),
@@ -26,7 +24,7 @@ Control Control(
 
 Adder Add_PC(
     .data1_in   (pc_o),
-    .data2_in   (const_4),
+    .data2_in   (32'b100),
     .data_o     (adder_o)
 );
 
