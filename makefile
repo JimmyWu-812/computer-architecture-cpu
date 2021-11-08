@@ -1,5 +1,6 @@
 # CC and CFLAGS are varilables
 CC = iverilog
+NAME = CPU
 # CFLAGS = -c
 # AR = ar
 # ARFLAGS = rcv
@@ -9,17 +10,17 @@ CC = iverilog
 # DBGFLAGS = -g -D_DEBUG_ON_
 # OPTFLAGS = -O3
 
-all: CPU.out
+all: $(NAME).out sim
 	@echo -n ""
 
-CPU.out: *.v
+$(NAME).out: *.v
 	$(CC) -o $@ $^
 
 sim:
-	vvp CPU.out
+	vvp $(NAME).out
 
 wav:
-	gtkwave CPU.vcd
+	gtkwave $(NAME).vcd
 
 clean:
 	rm -rf *.out *.vcd output.txt
