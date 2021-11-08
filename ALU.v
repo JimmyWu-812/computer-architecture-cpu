@@ -10,7 +10,7 @@ module ALU
 input signed [31:0] data1_i;
 input signed [31:0] data2_i;
 input [2:0] ALUCtrl_i;
-output signed [31:0] data_o;
+output [31:0] data_o;
 output Zero_o;
 
 reg data_o;
